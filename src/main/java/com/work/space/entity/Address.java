@@ -10,53 +10,56 @@ import javax.persistence.Table;
 public class Address extends AbstractBaseEntity {
 
     @Column(name = "address_id")
-    private String address_id;
+    private Integer address_id;
 
     @Column(name = "x_coordinate")
-    private String x_coordinate;
+    private Integer x_coordinate;
 
     @Column(name = "y_coordinate")
-    private String y_coordinate;
+    private Integer y_coordinate;
 
 
 
     public Address() {}
-    public Address(Integer id, String address_id, String x_coordinate, String y_coordinate) {
+    public Address(Integer id, Integer address_id, Integer x_coordinate, Integer y_coordinate) {
         super(id);
         this.address_id = address_id;
         this.x_coordinate = x_coordinate;
         this.y_coordinate = y_coordinate;
 
     }
-    public Address( String address_id, String x_coordinate, String y_coordinate) {
+    public Address( Integer address_id, Integer x_coordinate, Integer y_coordinate) {
         this.address_id = address_id;
         this.x_coordinate = x_coordinate;
         this.y_coordinate = y_coordinate;
     }
-    public void setAddress_id(String address_id) {
+
+
+
+    public void setAddress_id(Integer address_id) {
         this.address_id = address_id;
     }
 
-    public void setX_coordinate(String x_coordinate) {
+    public void setX_coordinate(Integer x_coordinate) {
         this.x_coordinate = x_coordinate;
     }
 
-    public void setY_coordinate(String y_coordinate) {
+    public void setY_coordinate(Integer y_coordinate) {
         this.y_coordinate = y_coordinate;
     }
 
 
 
 
-    public String getAddress_id() {
+    public Integer getAddress_id() {
         return address_id;
     }
 
-    public String getX_coordinate() {
+    public Integer getX_coordinate() {
         return x_coordinate;
     }
 
-    public String getY_coordinate() {
+    public Integer getY_coordinate() {
         return y_coordinate;
     }
 }

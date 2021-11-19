@@ -20,16 +20,16 @@ public abstract class AbstractUserTo implements HasId, Serializable {
     private final String secondName;
     private final String patronymic;
 
-    private final String address_id;
-    private final String x_coordinate;
-    private final String y_coordinate;
+    private final Integer address_id;
+    private final Integer x_coordinate;
+    private final Integer y_coordinate;
 
 
     private final String roles;
 
     public AbstractUserTo(String phone, String email, String firstName, String secondName,
                           String patronymic,
-                          String address_id, String x_coordinate, String y_coordinate,
+                          Integer address_id, Integer x_coordinate, Integer y_coordinate,
                           String roles) {
         this.phone = phone;
         this.email = email;
@@ -95,15 +95,15 @@ public abstract class AbstractUserTo implements HasId, Serializable {
         return patronymic;
     }
 
-    public String getAddress_id() {
+    public Integer getAddress_id() {
         return address_id;
     }
 
-    public String getX_coordinate() {
+    public Integer getX_coordinate() {
         return x_coordinate;
     }
 
-    public String getY_coordinate() {
+    public Integer getY_coordinate() {
         return y_coordinate;
     }
 

@@ -9,7 +9,7 @@ public class UserTo extends AbstractUserTo {
             "building", "apartment",
             "roles"})
     public UserTo(Integer id, String phone, String email, String firstName, String secondName, String patronymic,
-                  String address_id, String x_coordinate, String y_coordinate,
+                  Integer address_id, Integer x_coordinate, Integer y_coordinate,
                   String roles) {
 
         super(phone, email, firstName, secondName, patronymic,

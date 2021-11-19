@@ -19,7 +19,7 @@ public class VersionRestController {
 
     @GetMapping
     public String getVersion() throws NoSuchFileException {
-        System.out.println("getVersion");
+
         StringBuilder stringBuilder = new StringBuilder();
         try (Stream<String> textStream = Files.lines(Paths.get("pom.xml"))) {
             textStream.forEach(stringBuilder::append);
@@ -30,7 +30,7 @@ public class VersionRestController {
                 Pattern.DOTALL);
         final Matcher matcher = pattern.matcher(stringBuilder.toString());
         matcher.find();
-        matcher.find();
-        return matcher.group(1);
+//        matcher.find();
+        return matcher.group(0);
     }
 }

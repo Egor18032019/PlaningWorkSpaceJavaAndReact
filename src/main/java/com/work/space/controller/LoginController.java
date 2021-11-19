@@ -3,6 +3,7 @@ package com.work.space.controller;
 
 import com.work.space.service.OtpService;
 import com.work.space.service.user.UserService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
-
+@Tag(name = "Контроллер получение одноразовых паролей")
 @Controller
 public class LoginController {
 

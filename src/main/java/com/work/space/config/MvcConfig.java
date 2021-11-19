@@ -1,4 +1,4 @@
-package com.boots.config;
+package com.work.space.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;

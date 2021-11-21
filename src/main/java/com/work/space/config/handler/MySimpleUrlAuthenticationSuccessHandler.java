@@ -28,6 +28,7 @@ public class MySimpleUrlAuthenticationSuccessHandler implements AuthenticationSu
         httpServletResponse.setCharacterEncoding("UTF-8");
         httpServletResponse.setContentType("application/json;charset=UTF-8");
         httpServletResponse.getWriter().write(JsonUtil.writeValue(authUserTo));
+        System.out.println("! onAuthenticationSuccess !");
         httpServletResponse.setStatus(200);
     }
 }

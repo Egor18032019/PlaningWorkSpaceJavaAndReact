@@ -19,10 +19,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Tag(name = "Админский user контроллер")
+@Tag(name = "Admin Controller")
 @RestController
-@RequestMapping(value = "/rest/admin/users")
+@RequestMapping(value = AdminRestController.REST_URL)
 public class AdminRestController {
+    static final String REST_URL = "/rest/admin/users";
 
     static final Logger log = LoggerFactory.getLogger(AdminRestController.class);
     private final UserService userService;

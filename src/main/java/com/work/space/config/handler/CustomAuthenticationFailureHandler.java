@@ -1,4 +1,4 @@
-package com.work.space.config;
+package com.work.space.config.handler;
 
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;

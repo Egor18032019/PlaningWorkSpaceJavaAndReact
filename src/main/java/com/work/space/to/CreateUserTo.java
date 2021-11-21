@@ -20,6 +20,19 @@ public class CreateUserTo extends AbstractUserTo implements HasId, Serializable 
         this.otp = otp;
     }
 
+//    {
+//                "phone": "79999999999",
+//                "email": "qwe@asd.re",
+//                "firstName": "fname",
+//                "secondName": "secondName",
+//                "patronymic": "patronymic",
+//                "address_id": 80000,
+//                "company_id": 5000,
+//                "roles": "User",
+//                "x_coordinate": "22",
+//                "y_coordinate": "22",
+//                "otp": "59664"
+//        }
     public String getOtp() {
         return otp;
     }

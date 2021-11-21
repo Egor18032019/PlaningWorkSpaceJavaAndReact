@@ -11,7 +11,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@Tag(name = "Контроллер профиля авторизованного юзера")
+@Tag(name = "Authorized User Profile Controller")
 @RequestMapping(value = ProfileRestController.REST_URL)
 public class ProfileRestController {
 
@@ -24,7 +24,10 @@ public class ProfileRestController {
     }
 
     @GetMapping()
-    public UserTo get(@Parameter(hidden = true) @AuthenticationPrincipal AuthorizedUser authorizedUser) {
+    public UserTo get(@Parameter(hidden = true)
+                          @AuthenticationPrincipal AuthorizedUser authorizedUser) {
+        System.out.println(authorizedUser);
+        System.out.println(userService.getByPhone(authorizedUser.getPhone()));
         return UserUtil.asTo(userService.getByPhone(authorizedUser.getPhone()));
     }
 

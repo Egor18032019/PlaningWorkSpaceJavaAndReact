@@ -1,6 +1,7 @@
 package com.work.space.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.work.space.config.handler.CustomAuthenticationFailureHandler;
 import com.work.space.config.handler.MySimpleUrlAuthenticationSuccessHandler;
 import com.work.space.service.OtpAuthenticationProvider;
 import com.work.space.service.user.UserService;
@@ -67,6 +68,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements W
                 .antMatchers("/registration-otp").not().authenticated()
                 .antMatchers("/rest/users").not().authenticated()
                 .antMatchers("/rest/**").authenticated()
+                .antMatchers("/rest/request/**").authenticated()
+
                 // Доступ только для пользователей с ролью Администратор
 //                .antMatchers("/rest/admin").hasRole("ADMIN")/ fixme delete
                 .antMatchers("/rest/admin/**").hasRole("ADMIN")
@@ -74,12 +77,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements W
 //                .antMatchers("/news").hasAnyAuthority("USER", "ADMIN")// почему то так не работает
                 .antMatchers("/news").hasRole("USER")
 //                .antMatchers("/counters").hasRole("USER")
-                .antMatchers("/add-counter").hasRole("USER")
-                .antMatchers("/saveCounter").hasRole("USER")
-                .antMatchers("/upload").hasRole("USER")
-                .antMatchers("/saveCounterValues").hasRole("USER")
-                .antMatchers("/request").hasRole("USER")
-                .antMatchers("/request/**").hasRole("USER")
                 .antMatchers("/files/**").hasRole("USER")
                 // Доступ разрешен всем пользователей
                 .antMatchers("/version").permitAll()
@@ -112,6 +109,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements W
     }
     @PostConstruct
     void setMapper() {
+        System.out.println("setMapper PostConstruct");
         JsonUtil.setObjectMapper(objectMapper);
     }
 }

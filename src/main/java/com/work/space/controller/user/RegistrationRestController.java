@@ -20,7 +20,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 
 @RestController
-@Tag(name = "Контроллер регистрации")
+@Tag(name = "Registration Controller")
 @RequestMapping(value = RegistrationRestController.REST_URL)
 public class RegistrationRestController {
 

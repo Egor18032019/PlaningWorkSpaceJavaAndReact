@@ -1,4 +1,4 @@
-package com.work.space.controller;
+package com.work.space.controller.user;
 
 
 import com.work.space.service.OtpService;

@@ -37,20 +37,43 @@ public class RegistrationRestController {
 
     @PostMapping
     public ResponseEntity<UserTo> create(@RequestBody CreateUserTo createUserTo) {
-        System.out.println("RegistrationRestController" + createUserTo);
+        System.out.println("RegistrationRestController - " + createUserTo.toString());
         log.info("Attempt to create a new user " + createUserTo.getPhone());
         //otp = one time password
         int otp = Integer.parseInt(createUserTo.getOtp());
         if (otp == otpService.getOtp(Long.parseLong(createUserTo.getPhone()))) {
+
             User userFromTo = UserUtil.toEntity(createUserTo);
+            System.out.println(" userFromTo ");
             UserTo created = UserUtil.asTo(userService.create(userFromTo));
             URI uriOfNewUser = ServletUriComponentsBuilder.fromCurrentContextPath()
                     .path("/rest/admin/users" + "/{phone}")
                     .buildAndExpand(created.getPhone()).toUri();
-            return ResponseEntity.created(uriOfNewUser).body(created);
+            ResponseEntity<UserTo> answer =ResponseEntity.created(uriOfNewUser).body(created);
+            System.out.println(answer);
+            return answer;
         } else {
             throw new BadCredentialsException("Wrong registration password!");
         }
     }
+/*
 
+
+{
+  "id": 0,
+  "phone": "79124444444",
+  "email": "stringuser0@mail.ru",
+  "firstName": "firstName",
+  "secondName": "secondName",
+  "patronymic": "patronymic",
+  "address_id": 10009,
+  "company_id": 50001,
+  "employment_id": 80000,
+  "roles": "Users",
+  "otp": 27728
+}
+
+
+}
+ */
 }

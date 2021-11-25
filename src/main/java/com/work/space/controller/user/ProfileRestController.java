@@ -26,7 +26,7 @@ public class ProfileRestController {
     @GetMapping()
     public UserTo get(@Parameter(hidden = true)
                           @AuthenticationPrincipal AuthorizedUser authorizedUser) {
-        System.out.println(authorizedUser);
+        System.out.println("authorizedUser"+authorizedUser);
         System.out.println(userService.getByPhone(authorizedUser.getPhone()));
         return UserUtil.asTo(userService.getByPhone(authorizedUser.getPhone()));
     }
@@ -44,5 +44,18 @@ public class ProfileRestController {
         userService.update(userTo, authorizedUser.getId());
         authorizedUser.setUserTo(userTo);
     }
-
 }
+/*
+{
+"id":60000,
+"phone":"79000000000",
+"email":"user0@mail.ru",
+"firstName":"Петрddd",
+"secondName":"Петроdddв",
+"patronymic":"Петровdddич",
+"employment_id":80001,
+"address_id":10005,
+"x_coordinate":543,
+"y_coordinate":376,
+"roles":"USER"}
+ */

@@ -21,15 +21,18 @@ public abstract class AbstractUserTo implements HasId, Serializable {
     private final String patronymic;
 
     private final Integer address_id;
-    private final Integer x_coordinate;
-    private final Integer y_coordinate;
+    private final Integer employment_id;
+
+    private final Integer company_id;
 
 
     private final String roles;
 
     public AbstractUserTo(String phone, String email, String firstName, String secondName,
                           String patronymic,
-                          Integer address_id, Integer x_coordinate, Integer y_coordinate,
+                          Integer  address_id,
+                          Integer company_id,
+                          Integer employment_id,
                           String roles) {
         this.phone = phone;
         this.email = email;
@@ -37,8 +40,9 @@ public abstract class AbstractUserTo implements HasId, Serializable {
         this.secondName = secondName;
         this.patronymic = patronymic;
         this.address_id = address_id;
-        this.x_coordinate = x_coordinate;
-        this.y_coordinate = y_coordinate;
+        this.company_id = company_id;
+        this.employment_id = employment_id;
+
 
         this.roles = roles;
     }
@@ -61,7 +65,6 @@ public abstract class AbstractUserTo implements HasId, Serializable {
 
         char firstSymbol = '7';
         char secondSymbol = '9';
-        System.out.println("getPhone " + phone.charAt(1));
 
         if (phone.charAt(0) != firstSymbol) {
             throw new IncorectDataDuringRegistration("The first digit is not 7.");
@@ -95,21 +98,35 @@ public abstract class AbstractUserTo implements HasId, Serializable {
         return patronymic;
     }
 
+    public Integer getEmployment_id() {
+        return employment_id;
+    }
+
     public Integer getAddress_id() {
         return address_id;
     }
 
-    public Integer getX_coordinate() {
-        return x_coordinate;
+    public Integer getCompany_id() {
+        return company_id;
     }
-
-    public Integer getY_coordinate() {
-        return y_coordinate;
-    }
-
 
     public String getRoles() {
         return roles;
     }
 
+    @Override
+    public String toString() {
+        return "AbstractUserTo{" +
+                "id=" + id +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", secondName='" + secondName + '\'' +
+                ", patronymic='" + patronymic + '\'' +
+                ", address_id=" + address_id +
+                ", employment_id=" + employment_id +
+                ", company_id=" + company_id +
+                ", roles='" + roles + '\'' +
+                '}';
+    }
 }

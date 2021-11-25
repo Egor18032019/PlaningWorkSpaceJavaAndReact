@@ -1,65 +1,45 @@
 package com.work.space.entity;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "addresses")
-public class Address extends AbstractBaseEntity {
+public class Address  {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
+    private Integer id;
 
-    @Column(name = "address_id")
-    private Integer address_id;
+    @Column(name = "address")
+    private String address;
 
-    @Column(name = "x_coordinate")
-    private Integer x_coordinate;
-
-    @Column(name = "y_coordinate")
-    private Integer y_coordinate;
-
-
-
-    public Address() {}
-    public Address(Integer id, Integer address_id, Integer x_coordinate, Integer y_coordinate) {
-        super(id);
-        this.address_id = address_id;
-        this.x_coordinate = x_coordinate;
-        this.y_coordinate = y_coordinate;
-
-    }
-    public Address( Integer address_id, Integer x_coordinate, Integer y_coordinate) {
-        this.address_id = address_id;
-        this.x_coordinate = x_coordinate;
-        this.y_coordinate = y_coordinate;
+    public Address(String address) {
+        this.address = address;
     }
 
-
-
-    public void setAddress_id(Integer address_id) {
-        this.address_id = address_id;
+    public Address(Integer id) {
+        this.id = id;
     }
 
-    public void setX_coordinate(Integer x_coordinate) {
-        this.x_coordinate = x_coordinate;
+    public Address() {
+
     }
 
-    public void setY_coordinate(Integer y_coordinate) {
-        this.y_coordinate = y_coordinate;
+    public Integer getId() {
+        System.out.println("getId " + id);
+        return id;
     }
 
-
-
-
-    public Integer getAddress_id() {
-        return address_id;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public Integer getX_coordinate() {
-        return x_coordinate;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public Integer getY_coordinate() {
-        return y_coordinate;
+    public String getAddress() {
+        return address;
     }
 }

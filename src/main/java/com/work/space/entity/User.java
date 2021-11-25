@@ -9,6 +9,7 @@ import org.hibernate.annotations.OnDeleteAction;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.EnumSet;
+import java.util.Optional;
 import java.util.Set;
 
 @Entity
@@ -30,15 +31,25 @@ public class User extends AbstractBaseEntity {
 
     @Column(name = "patronymic")
     private String patronymic;
+   @Column(name = "address_id")
+    private Integer address_id;
+   @Column(name = "company_id")
+    private Integer company_id;
+   @Column(name = "employment_id")
+    private Integer employment_id;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "address_id")
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER )
+    @JoinColumn(name = "address_id",insertable = false,updatable = false)
     private Address address;
 
-    @JoinColumn(name = "company_id")
+    @JoinColumn(name = "company_id",insertable = false,updatable = false)
     @ManyToOne(fetch = FetchType.EAGER)
     @JsonIgnore
     private Company company;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "employment_id",insertable = false,updatable = false)
+    private Employment employment;
 
     @Enumerated(EnumType.STRING)
     @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),
@@ -57,6 +68,7 @@ public class User extends AbstractBaseEntity {
     }
 
     public User(int id, Long phone, String email, String firstName, String secondName, String patronymic,
+                Integer address_id,Integer company_id, Integer employment_id,
                 Role role, Role... roles){
         super(id);
         this.phone = phone;
@@ -64,16 +76,24 @@ public class User extends AbstractBaseEntity {
         this.firstName = firstName;
         this.secondName = secondName;
         this.patronymic = patronymic;
+        this.address_id = address_id;
+        this.company_id = company_id;
+        this.employment_id = employment_id;
         this.roles = EnumSet.of(role, roles);
     }
 
-    public User(Long phone, String email, String firstName, String secondName, String patronymic, Set<Role> roles) {
+    public User(Long phone, String email, String firstName, String secondName, String patronymic,
+                Integer address_id,Integer company_id, Integer employment_id,
+                Set<Role> roles) {
         System.out.println("!!!!!!User->");
         this.phone = phone;
         this.email = email;
         this.firstName = firstName;
         this.secondName = secondName;
         this.patronymic = patronymic;
+        this.address_id = address_id;
+        this.company_id = company_id;
+        this.employment_id = employment_id;
         this.roles = roles;
     }
 
@@ -139,10 +159,61 @@ public class User extends AbstractBaseEntity {
     }
 
     public Address getAddress() {
-        return address;
+        System.out.println("getAddress " + address);
+        return address  ;
+    }
+
+    public Employment getEmployment() {
+        return employment;
     }
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public void setEmployment(Employment employment) {
+        this.employment = employment;
+    }
+
+    public Integer getAddress_id() {
+        return address_id;
+    }
+
+    public Integer getCompany_id() {
+        return company_id;
+    }
+
+    public Integer getEmployment_id() {
+        return employment_id;
+    }
+
+    public void setAddress_id(Integer address_id) {
+        this.address_id = address_id;
+    }
+
+    public void setCompany_id(Integer company_id) {
+        this.company_id = company_id;
+    }
+
+    public void setEmployment_id(Integer employment_id) {
+        this.employment_id = employment_id;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "phone=" + phone +
+                ", email='" + email + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", secondName='" + secondName + '\'' +
+                ", patronymic='" + patronymic + '\'' +
+                ", address_id=" + address_id +
+                ", company_id=" + company_id +
+                ", employment_id=" + employment_id +
+                ", address=" + address +
+                ", company=" + company +
+                ", employment=" + employment +
+                ", roles=" + roles +
+                '}';
     }
 }

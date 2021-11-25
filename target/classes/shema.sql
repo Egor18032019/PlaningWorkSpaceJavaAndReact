@@ -3,6 +3,7 @@ DROP TABLE IF EXISTS request_statuses;
 DROP TABLE IF EXISTS equipment_list;
 DROP TABLE IF EXISTS equipment_type;
 DROP TABLE IF EXISTS addresses CASCADE;
+DROP TABLE IF EXISTS employment CASCADE;
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS user_roles;
 DROP TABLE IF EXISTS companies;
@@ -15,12 +16,23 @@ CREATE TABLE companies
     id   INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
     name VARCHAR(50) NOT NULL
 );
+-- должно в себя включать:
+-- - координаты р.м.
+-- - номер р.м.
+-- - не удаляться
+CREATE TABLE employment
+(
+    id        INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
+    employment_id   INTEGER       NOT NULL,
+    x_coordinate      INTEGER NOT NULL,
+    y_coordinate    INTEGER NOT NULL
+-- TODO добавить уникальность
+);
 CREATE TABLE addresses
 (
     id        INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
-    address_id   INTEGER       NOT NULL,
-    x_coordinate      INTEGER NOT NULL,
-    y_coordinate    INTEGER NOT NULL
+    address   TEXT    NOT NULL
+
 );
 CREATE TABLE users
 (
@@ -30,8 +42,12 @@ CREATE TABLE users
     first_name  TEXT    NOT NULL,
     second_name TEXT    NOT NULL,
     patronymic  TEXT    NOT NULL,
-    address_id  INTEGER NOT NULL,
-    company_id  INTEGER,
+    address_id  INTEGER not null ,
+    employment_id  INTEGER,
+--     рабочего места может не быть(удаленка)
+-- TODO         компания должна быть и ее должен ставить админ ?
+
+    company_id  INTEGER  ,
     FOREIGN KEY (company_id) REFERENCES companies (id),
     FOREIGN KEY (address_id) REFERENCES addresses (id),
     CONSTRAINT user_phone UNIQUE (phone)

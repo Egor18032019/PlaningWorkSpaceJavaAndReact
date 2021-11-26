@@ -18,9 +18,6 @@ public class Address  {
         this.address = address;
     }
 
-    public Address(Integer id) {
-        this.id = id;
-    }
 
     public Address() {
 

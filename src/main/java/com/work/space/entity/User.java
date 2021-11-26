@@ -158,9 +158,10 @@ public class User extends AbstractBaseEntity {
         this.roles = roles;
     }
 
+
     public Address getAddress() {
         System.out.println("getAddress " + address);
-        return address  ;
+        return address;
     }
 
     public Employment getEmployment() {

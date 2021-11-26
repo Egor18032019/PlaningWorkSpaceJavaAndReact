@@ -21,9 +21,9 @@ public abstract class AbstractUserTo implements HasId, Serializable {
     private final String patronymic;
 
     private final Integer address_id;
+    private final Integer company_id;
     private final Integer employment_id;
 
-    private final Integer company_id;
 
 
     private final String roles;
@@ -124,8 +124,8 @@ public abstract class AbstractUserTo implements HasId, Serializable {
                 ", secondName='" + secondName + '\'' +
                 ", patronymic='" + patronymic + '\'' +
                 ", address_id=" + address_id +
-                ", employment_id=" + employment_id +
                 ", company_id=" + company_id +
+                ", employment_id=" + employment_id +
                 ", roles='" + roles + '\'' +
                 '}';
     }

@@ -45,6 +45,7 @@ public class RegistrationRestController {
 
             User userFromTo = UserUtil.toEntity(createUserTo);
             System.out.println(" userFromTo ");
+
             UserTo created = UserUtil.asTo(userService.create(userFromTo));
             URI uriOfNewUser = ServletUriComponentsBuilder.fromCurrentContextPath()
                     .path("/rest/admin/users" + "/{phone}")

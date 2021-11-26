@@ -27,9 +27,9 @@ VALUES (60000, 79000000000, 'user0@mail.ru', 'Петр', 'Петров'  , 'Пе
 INSERT INTO user_roles (role, user_id)
 VALUES ('USER', 60000),
        ('USER', 60001),
-       ('USER', 60003),
        ('ADMIN', 60002),
-       ('USER', 60002);
+       ('USER', 60003),
+       ('USER', 60004);
 
 INSERT INTO equipment_type (id, name)
 VALUES (90000, 'ПК'),

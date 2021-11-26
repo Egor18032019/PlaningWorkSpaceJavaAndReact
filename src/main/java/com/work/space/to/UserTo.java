@@ -5,7 +5,9 @@ import java.beans.ConstructorProperties;
 public class UserTo extends AbstractUserTo {
 
     @ConstructorProperties({"id", "phone", "email", "firstName", "secondName", "patronymic",
-            "address_id", "employment_id", "company_id",
+            "address_id",
+            "company_id",
+            "employment_id",
             "roles"})
     public UserTo(Integer id, String phone, String email, String firstName, String secondName, String patronymic,
                   Integer address_id,

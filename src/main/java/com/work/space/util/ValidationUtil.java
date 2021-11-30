@@ -29,6 +29,7 @@ public class ValidationUtil {
     }
 
     public static void checkIdEquality(HasId bean, int id) {
+        System.out.println(bean.id() + " = " + id);
         if (bean.id() != id) {
             throw new NotFoundException(bean + " must be with id=" + id);
         }

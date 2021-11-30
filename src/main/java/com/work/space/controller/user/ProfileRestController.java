@@ -45,7 +45,8 @@ public class ProfileRestController {
             @Parameter(hidden = true) @AuthenticationPrincipal AuthorizedUser authorizedUser) {
         return UserUtil.asTo(userService.getByPhone(authorizedUser.getPhone()));
     }
-
+// перед тем как сделать put , фронт делает Get получает нужные и возможные к изменениию поля и
+    // на основе их делает PUT запрос
     @PutMapping(value = "/update")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void update(@RequestBody UserTo userTo,

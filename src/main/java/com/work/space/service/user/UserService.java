@@ -54,11 +54,11 @@ public class UserService implements UserDetailsService {
         System.out.println("userService.create(userFromTo) ");
         ValidationUtil.checkPhone(userRepository.getByPhone(user.getPhone()) != null);
         user.setRoles(user.getRoles());//fixme как то так
-//        user.setCompany(companyRepository.getById(50000));// fixme заглушка
-        return userRepository.save(user);
+         return userRepository.save(user);
     }
 
     public void update(UserTo userTo, int authUserId) {
+
         ValidationUtil.checkIdEquality(userTo, authUserId);
 
         long phoneFromTo = Long.parseLong(userTo.getPhone());

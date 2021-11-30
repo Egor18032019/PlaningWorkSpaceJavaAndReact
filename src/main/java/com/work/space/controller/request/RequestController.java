@@ -163,16 +163,19 @@ public class RequestController {
         }
     }
 /*
-   {
-                "type":3,
-                "title": Новая заявка,
-                "date": 20.11.21,
-                "address":20,
-                "comment":"Спасите помогите",
-                "status":1,
-                "filename": "",
-                "client": 60002
-    }
+       {
+
+                    "type":3,
+                    "title": "Новая заявка",
+                    "date": "2021-11-25T16:28:29.342Z",
+                    "address":20,
+                    "comment":"!!!!!!Спасите помогите!!!!!!!!!!!",
+                    "status":1,
+                    "client": 60002,
+                    "filename": ""
+        }
+
+
  */
     // Обновление обращения клиента
     @PostMapping(path = "{id}")

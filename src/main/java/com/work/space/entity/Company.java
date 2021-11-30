@@ -1,12 +1,16 @@
 package com.work.space.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "companies")
 public class Company extends AbstractBaseEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
+    private Integer id;
+
 
     @Column(name = "name")
     private String name;
@@ -15,17 +19,20 @@ public class Company extends AbstractBaseEntity {
 
     public Company() {}
 
-    public Company(Integer id, String name, String address, Long phone) {
-        super(id);
-        this.name = name;
 
-    }
 
     @Override
     public String toString() {
         return "Company{" +
-                "name='" + name + '\'' +
-                ", address='" +
-                '}';
+                "name='" + name + '}';
+    }
+
+    @Override
+    public Integer getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
     }
 }

@@ -10,13 +10,14 @@ public class CreateUserTo extends AbstractUserTo implements HasId, Serializable 
     private final String otp;
 
     @ConstructorProperties({"id", "phone", "email", "firstName", "secondName",
-            "patronymic", "address_id", "company_id", "roles"})
+            "patronymic","address_id", "employment_id", "company_id", "roles"})
     public CreateUserTo(String phone, String email, String firstName, String secondName,
-                        String patronymic, Integer address_id, Integer x_coordinate,
-                        Integer y_coordinate,String roles,String otp) {
+                        String patronymic,
+                        Integer address_id, Integer company_id,
+                         Integer employment_id,String roles,String otp) {
 
         super(phone, email, firstName, secondName, patronymic,
-                address_id, x_coordinate, y_coordinate, roles);
+                address_id,company_id, employment_id,roles);
         this.otp = otp;
     }
 

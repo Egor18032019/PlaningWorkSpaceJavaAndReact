@@ -51,8 +51,10 @@ public class UserService implements UserDetailsService {
     }
 
     public User create(User user) {
+        System.out.println("userService.create(userFromTo) ");
         ValidationUtil.checkPhone(userRepository.getByPhone(user.getPhone()) != null);
-        user.setCompany(companyRepository.getById(50000));// fixme заглушка
+        user.setRoles(user.getRoles());//fixme как то так
+//        user.setCompany(companyRepository.getById(50000));// fixme заглушка
         return userRepository.save(user);
     }
 

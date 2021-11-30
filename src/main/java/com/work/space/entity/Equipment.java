@@ -1,7 +1,7 @@
 package com.work.space.entity;
 
 import javax.persistence.*;
-
+//TODO сделать рефакторинг
 @Entity
 @Table(name = "equipment_type")
 public class Equipment {

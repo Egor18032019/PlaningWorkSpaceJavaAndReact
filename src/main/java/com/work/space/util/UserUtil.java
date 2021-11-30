@@ -1,10 +1,12 @@
 package com.work.space.util;
 
-import com.work.space.entity.Address;
-import com.work.space.entity.Role;
-import com.work.space.entity.User;
+import com.work.space.entity.*;
+import com.work.space.repository.address.AddressRepository;
+import com.work.space.service.equipment.EquipmentService;
 import com.work.space.to.AbstractUserTo;
+import com.work.space.to.UserProfile;
 import com.work.space.to.UserTo;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,23 +16,20 @@ import java.util.stream.Collectors;
 public class UserUtil {
 
     public static User toEntity(AbstractUserTo userTo) {
+        System.out.println(" toEntity ");
         String[] rolesFromTo = userTo.getRoles().split(",");
-        Set<Role> roles = Arrays.stream(rolesFromTo).map(text -> Role.fromString(text)).collect(Collectors.toSet());
-        User created = new User(
+        Set<Role> roles = Arrays.stream(rolesFromTo).map(Role::fromString).collect(Collectors.toSet());
+
+        return new User(
                 Long.parseLong(userTo.getPhone()),
                 userTo.getEmail(),
                 userTo.getFirstName(),
                 userTo.getSecondName(),
                 userTo.getPatronymic(),
-                roles);
-
-        Address address = new Address(
                 userTo.getAddress_id(),
-                userTo.getX_coordinate(),
-                userTo.getY_coordinate()
-        );
-        created.setAddress(address);
-        return created;
+                userTo.getCompany_id(),
+                userTo.getEmployment_id(),
+                roles);
     }
 
     public static List<UserTo> asTos(List<User> users) {
@@ -38,6 +37,13 @@ public class UserUtil {
     }
 
     public static UserTo asTo(User user) {
+        System.out.println(" asTo " + user.toString());
+        String role = user.getRoles()
+                .stream()
+                .map(Enum::toString)
+                .collect(Collectors.joining(","));
+
+
         return new UserTo(
                 user.getId(),
                 user.getPhone() + "",
@@ -45,23 +51,39 @@ public class UserUtil {
                 user.getFirstName(),
                 user.getSecondName(),
                 user.getPatronymic(),
-                user.getAddress().getAddress_id(),
-                user.getAddress().getX_coordinate(),
-                user.getAddress().getY_coordinate(),
 
-                user.getRoles()
-                        .stream()
-                        .map(Enum::toString)
-                        .collect(Collectors.joining(",")));
+                user.getAddress_id(),
+                user.getCompany_id(),
+                user.getEmployment_id(),
+                role
+        );
+
+
+    }
+
+    public static UserProfile asToProfile(User user,List<EquipmentList> equipmentList ) {
+        System.out.println(" asToProfile " + user.toString());
+
+        return new UserProfile(
+                user.getPhone() + "",
+                user.getEmail(),
+                user.getFirstName(),
+                user.getSecondName(),
+                user.getPatronymic(),
+                user.getAddress(),
+                user.getCompany(),
+                user.getEmployment(),
+                equipmentList
+        );
+
     }
 
     public static User updateFromTo(User user, UserTo userTo) {
 
+        Employment employment = user.getEmployment();
+        employment.setId(userTo.getEmployment_id());
         Address address = user.getAddress();
-        address.setAddress_id(userTo.getAddress_id());
-        address.setX_coordinate(userTo.getX_coordinate());
-        address.setY_coordinate(userTo.getY_coordinate());
-
+        address.setId(userTo.getAddress_id());
 
         user.setFirstName(userTo.getFirstName());
         user.setSecondName(userTo.getSecondName());

@@ -81,7 +81,7 @@ public class AdminRestController {
         log.info("The admin looks at the logs.");
         List<String> list = null;
         try {
-            Path path = Path.of("appintensiv.log");
+            Path path = Path.of("appwp.log");
             list = Files.readAllLines(path);
         } catch (Exception e) {
             log.warn("not find file", e);
@@ -99,7 +99,7 @@ public class AdminRestController {
         log.info("The admin looks at the logs.");
         List<String> list = null;
         try {
-            Path path = Path.of("appintensiv.log");
+            Path path = Path.of("appwp.log");
             list = Files.readAllLines(path);
         } catch (Exception e) {
             log.warn("Not find file", e);

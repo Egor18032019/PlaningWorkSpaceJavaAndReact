@@ -12,7 +12,7 @@ public enum Role implements GrantedAuthority {
                 return role;
             }
         }
-        return null;
+        return USER;
     }
 
     //    https://stackoverflow.com/a/19542316/548473

@@ -4,9 +4,9 @@ import com.work.space.entity.Equipment;
 
 public class DataJpaEquipmentRepository implements CrudEquipmnentRepository {
 
-    public final EquipmentRepository serviceRepository;
+    public final EquipmentTypeRepository serviceRepository;
 
-    public DataJpaEquipmentRepository(EquipmentRepository serviceRepository) {
+    public DataJpaEquipmentRepository(EquipmentTypeRepository serviceRepository) {
         this.serviceRepository = serviceRepository;
     }
 

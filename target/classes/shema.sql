@@ -68,15 +68,12 @@ CREATE TABLE equipment_type
     name VARCHAR NOT NULL
 
 );
--- ТМЦ у сотрудника
--- id идешка
--- name инвенатрный номер ? если без номера то передавать б.н
--- user_id идешка Юзера
--- equipment_id тип оборудование(ПК-ноут-Монитор-Телефон)
+ 
 CREATE TABLE equipment_list
 (
     id           INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
-    name         VARCHAR NOT NULL,
+    invnumber         VARCHAR NOT NULL,
+    serialnumber         VARCHAR NOT NULL,
     user_id      INTEGER,
     equipment_id INTEGER,
     FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,

@@ -1,7 +1,10 @@
 package com.work.space.controller.user;
 
+import com.work.space.entity.EquipmentList;
+import com.work.space.service.equipment.EquipmentService;
 import com.work.space.service.user.UserService;
 import com.work.space.to.AuthorizedUser;
+import com.work.space.to.UserProfile;
 import com.work.space.to.UserTo;
 import com.work.space.util.UserUtil;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -9,6 +12,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @Tag(name = "Authorized User Profile Controller")
@@ -18,17 +23,21 @@ public class ProfileRestController {
     public static final String REST_URL = "/rest/profile";
 
     private final UserService userService;
+    private final EquipmentService equipmentService;
 
-    public ProfileRestController(UserService userService) {
+    public ProfileRestController(UserService userService,EquipmentService equipmentService) {
+
         this.userService = userService;
+        this.equipmentService = equipmentService;
     }
 
     @GetMapping()
-    public UserTo get(@Parameter(hidden = true)
+    public UserProfile get(@Parameter(hidden = true)
                           @AuthenticationPrincipal AuthorizedUser authorizedUser) {
         System.out.println("authorizedUser"+authorizedUser);
-        System.out.println(userService.getByPhone(authorizedUser.getPhone()));
-        return UserUtil.asTo(userService.getByPhone(authorizedUser.getPhone()));
+
+        List<EquipmentList> equipmentList = equipmentService.getAll(authorizedUser.getId());
+        return UserUtil.asToProfile(userService.getByPhone(authorizedUser.getPhone()),equipmentList);
     }
 
     @GetMapping(value = "/update")

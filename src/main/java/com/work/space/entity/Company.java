@@ -19,10 +19,7 @@ public class Company extends AbstractBaseEntity {
 
     public Company() {}
 
-    public Company( Integer id1) {
 
-        this.id = id1;
-    }
 
     @Override
     public String toString() {
@@ -33,5 +30,9 @@ public class Company extends AbstractBaseEntity {
     @Override
     public Integer getId() {
         return id;
+    }
+
+    public String getName() {
+        return name;
     }
 }

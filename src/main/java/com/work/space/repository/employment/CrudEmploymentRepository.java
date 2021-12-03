@@ -3,13 +3,21 @@ package com.work.space.repository.employment;
 
 import com.work.space.entity.Employment;
 
+import java.util.List;
+import java.util.Optional;
+
 public interface CrudEmploymentRepository {
 
-    Employment get(int id);
+    Optional<Employment> get(int id);
 
-    Employment getByName(String name);
+    Optional<Employment> getPlace(int employment_id);
 
-    Employment save(Employment equipment);
+    List<Employment> getAll();
 
-    void delete(int id);
+
+    List<Employment> getAllPlaceFromThisFloor(int floor);
+
+    Employment save(Employment employment);
+
+    void delete(int employment_id);
 }

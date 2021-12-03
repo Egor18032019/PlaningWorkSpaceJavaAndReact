@@ -1,6 +1,8 @@
 package com.work.space.controller.user;
 
 
+import com.work.space.entity.Employment;
+import com.work.space.service.employment.EmploymentService;
 import com.work.space.service.user.UserService;
 import com.work.space.to.AuthorizedUser;
 import com.work.space.to.UserTo;
@@ -10,11 +12,13 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,9 +32,9 @@ public class AdminRestController {
     static final Logger log = LoggerFactory.getLogger(AdminRestController.class);
     private final UserService userService;
 
-    public AdminRestController(UserService userService) {
+    public AdminRestController(UserService userService ) {
         this.userService = userService;
-    }
+     }
 
     @GetMapping
     public List<UserTo> getAll(@Parameter(hidden = true) @AuthenticationPrincipal AuthorizedUser authorizedUser) {
@@ -107,4 +111,6 @@ public class AdminRestController {
 
         return list;
     }
+
+
 }

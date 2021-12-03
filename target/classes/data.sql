@@ -2,12 +2,15 @@ INSERT INTO companies (id, name)
 VALUES (50000, 'Темные'),
     (50001, 'Светлые');
 
-INSERT INTO employment (id, employment_id,x_coordinate, y_coordinate)
-VALUES (80000,1, 543, 376),
-       (80001,2, 533, 555),
-       (79999,0, 0, 0),
-       (80002,20, 522, 444),
-       (80003, 44,511, 333);
+
+
+INSERT INTO employment
+       (id,   employment_id,    x_coordinate, y_coordinate,floor)
+VALUES (80000,1,                543, 376,8),
+       (80001,2, 533, 555,3),
+       (79999,0, 0, 0,0),
+       (80002,20, 522, 444,9),
+       (80003, 44,511, 333,5);
 INSERT INTO addresses (id, address)
 VALUES (10008, 'Маркса 36 9 этаж'),
        (10009, 'Маркса 36 8 этаж'),

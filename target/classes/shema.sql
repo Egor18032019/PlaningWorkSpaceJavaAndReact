@@ -8,6 +8,7 @@ DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS user_roles;
 DROP TABLE IF EXISTS companies;
 
+
 DROP SEQUENCE IF EXISTS global_seq CASCADE;
 
 CREATE SEQUENCE global_seq START WITH 100000;
@@ -16,6 +17,8 @@ CREATE TABLE companies
     id   INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
     name VARCHAR(50) NOT NULL
 );
+
+
 -- должно в себя включать:
 -- - координаты р.м.
 -- - номер р.м.
@@ -25,7 +28,8 @@ CREATE TABLE employment
     id        INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
     employment_id   INTEGER       NOT NULL,
     x_coordinate      INTEGER NOT NULL,
-    y_coordinate    INTEGER NOT NULL
+    y_coordinate    INTEGER NOT NULL,
+    floor  INTEGER       NOT NULL
 -- TODO добавить уникальность
 );
 CREATE TABLE addresses

@@ -7,10 +7,6 @@ import com.work.space.repository.equipmentlist.CrudEquipmentListRepository;
 import java.util.List;
 
 
-//TODO сделалть что бы в одном сервисе выдавала данные из EquipmentList и
-//
-// выдать список что типа
-// {["ноут",1,2] ,["ПК", 222,2233] }
 
 @Service
 public class EquipmentService {
